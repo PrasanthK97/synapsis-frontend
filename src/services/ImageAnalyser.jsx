@@ -35,18 +35,29 @@ const ImageAnalyser = () => {
         
   
         const data = await response.json();
-        console.log(data);
-        console.log(data.inference_results.measurements);
+        console.log(data.code);
+        if(data.code === 400){
+            alert("Invalid file type. Please upload an image.");
+            setFile(null);
+            return;
+        } else if(data.code === 500){
+            alert("Server error. Please try again later.");
+            setFile(null);
+            return;
+        } 
+    
         setMeasurementData(data.inference_results.measurements);
         setResult(data);
         setIsOpObtained(true);
         console.log(measurementData);
         const fileUrl = URL.createObjectURL(file);
         navigate('/img_data', { state: {imageFile: fileUrl, outputData: data }});
-
+    
     }
+
       } catch (error) {
         console.error("Error:", error);
+        
         setResult("Error occurred");
       } finally {
         setLoading(false);       // 🔥 Stop spinner
