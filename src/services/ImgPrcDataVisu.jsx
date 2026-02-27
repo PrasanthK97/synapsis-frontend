@@ -39,7 +39,7 @@ function ImgPrcDataVisu() {
                     <div className="output-container">          
                         <>
                           {isDevViewEnabled ?
-                                <h3 >Result: {<pre>{JSON.stringify(data, null, 2)}</pre>}</h3>
+                                <h3 >Image Inference Result (JSON): {<pre>{JSON.stringify(data, null, 2)}</pre>}</h3>
                               : 
                                 <div className="intensity-table-container">
                                     <table border="3" cellPadding="8" cellSpacing="0">
