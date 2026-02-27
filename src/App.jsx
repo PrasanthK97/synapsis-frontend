@@ -15,6 +15,7 @@ function App() {
       <div>
            <Header/>    
            <Routes>
+              <Route path="/" element={<ImageAnalyser />} />
               <Route path="/home" element={<ImageAnalyser />} />
               <Route path="/img_data" element={<ImgPrcDataVisu />} />
            </Routes>
