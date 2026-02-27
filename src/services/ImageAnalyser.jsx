@@ -32,8 +32,6 @@ const ImageAnalyser = () => {
             body: formData
         });
         
-        
-  
         const data = await response.json();
         console.log(response.status, data);
         if(response.status === 400){
