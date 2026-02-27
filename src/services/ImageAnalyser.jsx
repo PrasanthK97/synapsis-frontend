@@ -35,12 +35,12 @@ const ImageAnalyser = () => {
         
   
         const data = await response.json();
-        console.log(data.code);
-        if(data.code === 400){
+        console.log(response.status, data);
+        if(response.status === 400){
             alert("Invalid file type. Please upload an image.");
             setFile(null);
             return;
-        } else if(data.code === 500){
+        } else if(response.status === 500){
             alert("Server error. Please try again later.");
             setFile(null);
             return;
