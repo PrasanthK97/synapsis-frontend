@@ -1,0 +1,64 @@
+
+
+  .process-image-button{
+    background-color: #3498db;
+  }
+
+  .img-prc-data-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    overflow-x: hidden;
+
+  }
+
+  .dev-view-button-container{
+    border-bottom: 50px;
+    align-self: flex-start;
+    justify-self: center;
+  }
+
+
+  .dev-view-button{
+    background-color:#3498db;
+  }
+
+  .img-container{
+    display: flex;
+    height: 80vh;
+    border-right: 5px;
+    padding:10px;
+  }
+
+  .uploaded-img{
+    height: fit-content;
+    align-self: center;
+  }
+
+  .output-container{
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    padding: 0px;
+    height: 80vh;
+    width:60vw;
+    /* justify-content:center; */
+  }
+
+  .intensity-table-container{
+    align-self: center;
+    
+  }
+
+  .img-output-container{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    justify-content: center;
+
+  }
+
+  body, #root {
+  overflow-x: hidden; 
+}
