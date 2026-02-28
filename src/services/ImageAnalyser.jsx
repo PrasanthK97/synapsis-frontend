@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useCallback} from "react";
 import { useNavigate } from 'react-router-dom';
 
 import './ImageAnalyser.css';
@@ -11,6 +11,28 @@ const ImageAnalyser = () => {
     const [result, setResult] = useState("");
     const [isOpObtained, setIsOpObtained] = useState(false);
     const [measurementData, setMeasurementData] = useState({});
+
+    const handleDrop = useCallback((e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+            const droppedFile = e.dataTransfer.files[0];
+
+        if (!droppedFile.type.startsWith("image/")) {
+            alert("Only image files are allowed.");
+            return;
+        }
+
+        setFile(droppedFile);
+            e.dataTransfer.clearData();
+        }
+    }, []);
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+    };
 
     const handleUpload = async () => {
 
@@ -74,22 +96,38 @@ const ImageAnalyser = () => {
                 </h3>
             } 
             <div>
-                <div className="input-container">
-                    {loading ? (<div className="spinner"></div>
+                <div className="input-base-container">
+                    {loading ? (
+                        <div className="spinner"></div>
                     ) : (
-                    <>
-                        <input 
-                        type="file" 
-                        accept="image/*"
-                        onChange={(e) => setFile(e.target.files[0])}
-                        />
+                    <div    className="drop-zone"
+                            onDrop={handleDrop}
+                            onDragOver={handleDragOver}
+                    >
+                    {file ? (
+                        <p>Selected file: {file.name}</p>
+                        ) : (
+                        <div >
+                            <div className="drag-drop-container">
+                                <p>Drag & drop an image here, or click "Choose File" to select</p>
+                            </div>
+                            <div className="input-container">
+                                <input 
+                                    type="file" 
+                                    accept="image/*"
+                                    onChange={(e) => setFile(e.target.files[0])}
+                                />
+                            </div>
+                        </div>
+                    )}
+                       
                         <button className="process-image-button" 
                                 onClick={handleUpload} 
                                 disabled={loading}
                         > 
                             PROCESS IMAGE
                         </button>
-                    </>
+                    </div>
                     )
                     }  
                 </div>
