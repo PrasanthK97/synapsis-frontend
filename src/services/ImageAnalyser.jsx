@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from "react";
+import React, {useState, useEffect,useCallback} from "react";
 import { useNavigate } from 'react-router-dom';
 
 import './ImageAnalyser.css';
@@ -11,6 +11,13 @@ const ImageAnalyser = () => {
     const [result, setResult] = useState("");
     const [isOpObtained, setIsOpObtained] = useState(false);
     const [measurementData, setMeasurementData] = useState({});
+
+    useEffect(() => {
+        setFile(null);
+        setLoading(false);
+        setResult("");
+        setMeasurementData({});
+    }, []);
 
     const handleDrop = useCallback((e) => {
         e.preventDefault();

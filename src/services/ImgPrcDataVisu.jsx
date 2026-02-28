@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import './ImgPrcDataVisu.css';
 
@@ -15,6 +15,13 @@ function ImgPrcDataVisu() {
   const toggleDevView = () => {
             setIsToggled(prev => !prev); 
     };
+
+  useEffect(() => {
+    setLoading(false);
+    // setResult("");
+    // setMeasurementData({});
+  }, []);
+
 
   return (
     <div className="img-prc-data-container">
